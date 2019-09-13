@@ -461,7 +461,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  jumpReload: 0.5
+  jumpReload: 0.2
   test: {fileID: 1618806010}
 --- !u!1 &1618806010
 GameObject:

@@ -24,6 +24,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 pos2d;
     private float currGravityScale;
 
+    [Tooltip("jump reloads after player hits ground")]
     public float jumpReload=0.3f;
     private float currJumpReload;
 
@@ -63,14 +64,14 @@ public class PlayerMovment : MonoBehaviour
             //JUMPING
             if (currJumpReload <= 0)
             {
-                if (Input.GetButton("Jump") && grounded)
+                if (Input.GetButtonDown("Jump") && grounded)
                 {
                     rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
                     Debug.Log("skok");
                     currJumpReload = jumpReload;
                 }
             }
-            else
+            else if(grounded)
             {
                 currJumpReload -= Time.deltaTime;
             }
@@ -96,6 +97,7 @@ public class PlayerMovment : MonoBehaviour
                 glideFlag = true;
                 /* Instantiate(test);
                  test.transform.position = transform.position;*/
+               // Debug.Log("zum");
             }
             else if (glideFlag)
             {
@@ -118,8 +120,11 @@ public class PlayerMovment : MonoBehaviour
                     currGlideTime -= Time.deltaTime;
                 }
             }
-
-
+            if (!grounded)
+            {
+                Debug.Log(rb.velocity.y);
+            }
+            
 
 
             if (facingRight == false && moveInput < 0)
