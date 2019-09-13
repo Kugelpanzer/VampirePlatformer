@@ -156,6 +156,7 @@ public class PlayerMovment : MonoBehaviour
 
             moveVector = (vLeft + vRight + vUp + vDown).normalized * speed * Time.deltaTime;
             rb.MovePosition(transform.position + moveVector);
+            moveInput = Input.GetAxis("Horizontal") * speed;
         }
 
 
