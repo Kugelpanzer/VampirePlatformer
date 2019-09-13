@@ -457,7 +457,7 @@ MonoBehaviour:
   jumpForce: 200
   glideTime: 0.2
   groundCheck: {fileID: 1798372823}
-  checkRadius: 0.1
+  checkRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
