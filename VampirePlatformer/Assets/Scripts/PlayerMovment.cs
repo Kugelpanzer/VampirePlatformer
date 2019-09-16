@@ -83,6 +83,7 @@ public class PlayerMovment : MonoBehaviour
                 moveInput = Input.GetAxis("Horizontal") * speed;
                 if (Input.GetAxis("Horizontal") > 0)
                 {
+                    Debug.Log("kretanje");
                     //rb.MovePosition(transform.position + new Vector3(speed, 0, 0) * Time.deltaTime);
                     rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
                 }
@@ -122,7 +123,7 @@ public class PlayerMovment : MonoBehaviour
             }
             if (!grounded)
             {
-                Debug.Log(rb.velocity.y);
+                //Debug.Log(rb.velocity.y);
             }
             
 
