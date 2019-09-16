@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovment : MonoBehaviour
+public class PlayerMovmentVariant : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
@@ -11,17 +11,15 @@ public class PlayerMovment : MonoBehaviour
 
 
     private float moveInput;
+    private float prevMoveInput;
 
     private bool facingRight = true;
     private Vector2 move;
     private Rigidbody2D rb;
 
     private bool grounded;
-    private bool headHit; 
     public Transform groundCheck;
-
-    [Tooltip("yoffset is height of ground check")]
-    public float yOffset;
+    public float checkRadius;
     public LayerMask whatIsGround;
 
     private Vector2 pos2d;
@@ -41,7 +39,7 @@ public class PlayerMovment : MonoBehaviour
     private Animator anim;
     public GameObject test;
     public BoxCollider2D playerCollider;
-    private float collY, collX;
+    private float collX, collY;
     void Flip() // flips crharacter sprite 
     {
         facingRight = !facingRight;
@@ -57,7 +55,6 @@ public class PlayerMovment : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
         currGravityScale = rb.gravityScale;
         currGlideTime = glideTime;
-
     }
 
     // Update is called once per frame
@@ -67,11 +64,11 @@ public class PlayerMovment : MonoBehaviour
         collX = playerCollider.size.x * transform.localScale.x;
         collY = playerCollider.size.y * transform.localScale.y;
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
-        //headHit= Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset), whatIsGround);
+        grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset), whatIsGround);
 
-        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset) );
-        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset) );
+        //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+
+
 
         if (!flyFlag)
         {
@@ -97,6 +94,7 @@ public class PlayerMovment : MonoBehaviour
             {
                 wasGrounded = true;
                 moveInput = Input.GetAxis("Horizontal") * speed;
+                prevMoveInput = moveInput;
                 if (Input.GetAxis("Horizontal") > 0)
                 {
 
@@ -180,18 +178,23 @@ public class PlayerMovment : MonoBehaviour
 
             moveVector = (vLeft + vRight + vUp + vDown).normalized * speed * Time.deltaTime;
             rb.MovePosition(transform.position + moveVector);
-            moveInput = Input.GetAxis("Horizontal") * speed;
+            if (Input.GetAxis("Horizontal") != 0)
+            { moveInput = Input.GetAxis("Horizontal") * speed; }
+            else
+            {
+                moveInput = prevMoveInput;
+            }
         }
 
         if(glideFlag || flyFlag)
         {
             anim.SetBool("Bat", true);
-           // transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
             anim.SetBool("Bat", false);
-            //*/transform.localScale = new Vector3(3, 3, 3);
+            transform.localScale = new Vector3(3, 3, 3);
         }
 
 
