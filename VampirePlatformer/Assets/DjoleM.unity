@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  jumpForce: 200
+  jumpForce: 400
   glideTime: 0.2
   groundCheck: {fileID: 1798372823}
   checkRadius: 0.2
