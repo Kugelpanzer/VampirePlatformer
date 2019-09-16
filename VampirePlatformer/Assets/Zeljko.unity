@@ -981,6 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222919579}
   - component: {fileID: 222919578}
+  - component: {fileID: 222919580}
   m_Layer: 8
   m_Name: Gargoyle
   m_TagString: Untagged
@@ -1051,6 +1052,32 @@ Transform:
   m_Father: {fileID: 268681489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &222919580
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222919577}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.6, y: 5.6}
+    newSize: {x: 5.6, y: 5.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.6, y: 5.6}
+  m_EdgeRadius: 0
 --- !u!1 &229378702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268681489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GargoyleFolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3696,6 +3723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 844728023}
   - component: {fileID: 844728022}
+  - component: {fileID: 844728024}
   m_Layer: 8
   m_Name: Gargoyle (1)
   m_TagString: Untagged
@@ -3766,6 +3794,32 @@ Transform:
   m_Father: {fileID: 268681489}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &844728024
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844728021}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.6, y: 5.6}
+    newSize: {x: 5.6, y: 5.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.6, y: 5.6}
+  m_EdgeRadius: 0
 --- !u!1 &859903949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +3830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859903951}
   - component: {fileID: 859903950}
+  - component: {fileID: 859903952}
   m_Layer: 8
   m_Name: Gargoyle (4)
   m_TagString: Untagged
@@ -3846,6 +3901,32 @@ Transform:
   m_Father: {fileID: 268681489}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &859903952
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859903949}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.6, y: 5.6}
+    newSize: {x: 5.6, y: 5.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.6, y: 5.6}
+  m_EdgeRadius: 0
 --- !u!1 &892479831
 GameObject:
   m_ObjectHideFlags: 0
@@ -4684,6 +4765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047648816}
   - component: {fileID: 1047648815}
+  - component: {fileID: 1047648817}
   m_Layer: 8
   m_Name: Gargoyle (3)
   m_TagString: Untagged
@@ -4754,6 +4836,32 @@ Transform:
   m_Father: {fileID: 268681489}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1047648817
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047648814}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.6, y: 5.6}
+    newSize: {x: 5.6, y: 5.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.6, y: 5.6}
+  m_EdgeRadius: 0
 --- !u!1 &1077752370
 GameObject:
   m_ObjectHideFlags: 0
@@ -6156,6 +6264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471682960}
   - component: {fileID: 1471682959}
+  - component: {fileID: 1471682961}
   m_Layer: 8
   m_Name: Gargoyle (2)
   m_TagString: Untagged
@@ -6226,6 +6335,32 @@ Transform:
   m_Father: {fileID: 268681489}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1471682961
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471682958}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.6, y: 5.6}
+    newSize: {x: 5.6, y: 5.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.6, y: 5.6}
+  m_EdgeRadius: 0
 --- !u!1 &1479674468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7770,7 +7905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977843748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.164127, y: 28.834631, z: 8.448415}
+  m_LocalPosition: {x: 16, y: 28.88, z: 8.448415}
   m_LocalScale: {x: 1.33, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 183584417}
