@@ -19,7 +19,7 @@ public class PlayerMovmentVariant : MonoBehaviour
 
     private bool grounded;
     public Transform groundCheck;
-    public float checkRadius;
+    public float yOffset;
     public LayerMask whatIsGround;
 
     private Vector2 pos2d;
