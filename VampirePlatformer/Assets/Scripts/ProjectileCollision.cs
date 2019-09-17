@@ -21,7 +21,6 @@ public class ProjectileCollision : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
-
             Destroy(gameObject);
         }
         if (col.gameObject.tag == "Wall")

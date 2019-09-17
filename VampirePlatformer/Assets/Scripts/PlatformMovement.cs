@@ -21,18 +21,20 @@ public class PlatformMovement : MonoBehaviour
     int stepsHorizontal = 0;
     int stepsVertical = 0;
 
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector2.right * Time.deltaTime * speedX);
-        transform.Translate(Vector2.up * Time.deltaTime * speedY);
-
+        // transform.Translate(Vector2.right * Time.deltaTime * speedX);
+        // transform.Translate(Vector2.up * Time.deltaTime * speedY);
+        rb.MovePosition(transform.position + Vector3.right * Time.deltaTime * speedX+ Vector3.up * Time.deltaTime * speedY);
         //Moving left
         if (speedX < 0)
         {
