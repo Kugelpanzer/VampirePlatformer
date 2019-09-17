@@ -10,16 +10,16 @@ public class PlatformMovement : MonoBehaviour
     public float speedX = 0;
 
     [Tooltip("How many steps to the left the platform can move. Do not set to 0.")]
-    public int constraintLeft = 1;
+    public float constraintLeft = 1;
     [Tooltip("How many steps to the right the platform can move. Do not set to 0.")]
-    public int constraintRight = 1;
+    public float constraintRight = 1;
     [Tooltip("How many steps upwards the platform can move. Do not set to 0.")]
-    public int constraintUp = 1;
+    public float constraintUp = 1;
     [Tooltip("How many steps downwards the platform can move. Do not set to 0.")]
-    public int constraintDown = 1;
+    public float constraintDown = 1;
 
-    int stepsHorizontal = 0;
-    int stepsVertical = 0;
+    float stepsHorizontal = 0;
+    float stepsVertical = 0;
 
     Rigidbody2D rb;
 
@@ -38,8 +38,8 @@ public class PlatformMovement : MonoBehaviour
         //Moving left
         if (speedX < 0)
         {
-            stepsHorizontal++;
-            if (stepsHorizontal == constraintLeft)
+            stepsHorizontal+= speedX;
+            if (-stepsHorizontal >= constraintLeft)
             {
                 speedX = -speedX;
             }
@@ -48,8 +48,8 @@ public class PlatformMovement : MonoBehaviour
         //Moving right
         else if (speedX > 0)
         {
-            stepsHorizontal--;
-            if (-stepsHorizontal == constraintRight)
+            stepsHorizontal += speedX;
+            if (stepsHorizontal >= constraintRight)
             {
                 speedX = -speedX;
             }
@@ -58,8 +58,8 @@ public class PlatformMovement : MonoBehaviour
         //Moving down
         if (speedY < 0)
         {
-            stepsVertical++;
-            if (stepsVertical == constraintDown)
+            stepsVertical += speedY;
+            if (-stepsVertical >= constraintDown)
             {
                 speedY = -speedY;
             }
@@ -68,8 +68,8 @@ public class PlatformMovement : MonoBehaviour
         //Moving up
         else if (speedY > 0)
         {
-            stepsVertical--;
-            if (-stepsVertical == constraintUp)
+            stepsVertical += speedY;
+            if (stepsVertical >= constraintUp)
             {
                 speedY = -speedY;
             }
