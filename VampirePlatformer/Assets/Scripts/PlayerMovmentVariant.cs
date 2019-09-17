@@ -115,6 +115,13 @@ public class PlayerMovmentVariant : MonoBehaviour
                  test.transform.position = transform.position;*/
                 Debug.Log("zum");
             }
+            if (!wasGrounded)
+            {
+                if (Input.GetButton("Jump"))
+                {
+                    flyFlag = true;
+                }
+            }
             else if (glideFlag)
             {
                 rb.gravityScale = 0;

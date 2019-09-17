@@ -185,13 +185,13 @@ public class PlayerMovment : MonoBehaviour
 
         if(glideFlag || flyFlag)
         {
-            anim.SetBool("Bat", true);
-            transform.localScale = new Vector3(1, 1, 1);
+            anim.SetBool("BatJump", true);
+            //transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            anim.SetBool("Bat", false);
-            transform.localScale = new Vector3(3, 3, 3);
+            anim.SetBool("BatJump", false);
+            //transform.localScale = new Vector3(3, 3, 3);
         }
 
 
