@@ -81,6 +81,7 @@ public class PlayerMovment : MonoBehaviour
             {
                 if (Input.GetButtonDown("Jump") && grounded)
                 {
+                    rb.gravityScale = currGravityScale;
                     rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
                     Debug.Log("skok");
                     currJumpReload = jumpReload;
@@ -95,6 +96,7 @@ public class PlayerMovment : MonoBehaviour
             //MOVING 
             if (grounded)
             {
+                rb.gravityScale = currGravityScale*10;
                 wasGrounded = true;
                 moveInput = Input.GetAxis("Horizontal") * speed;
                 if (Input.GetAxis("Horizontal") > 0)
@@ -199,7 +201,18 @@ public class PlayerMovment : MonoBehaviour
         prevVelocityY = rb.velocity.y;
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.layer == 8)
+        {
+            if(glideFlag || flyFlag)
+            {
+                glideFlag = false;
+                flyFlag = false;
+            }
+        }
 
+    }
 
 
     private void DeathTrigger()
