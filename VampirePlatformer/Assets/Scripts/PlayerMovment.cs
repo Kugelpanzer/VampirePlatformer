@@ -67,11 +67,11 @@ public class PlayerMovment : MonoBehaviour
         collX = playerCollider.size.x * transform.localScale.x;
         collY = playerCollider.size.y * transform.localScale.y;
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
+        grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/3),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 3), transform.position.y - (collY / 2)-yOffset), whatIsGround);
         //headHit= Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset), whatIsGround);
 
-        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset) );
-        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset) );
+        Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX /3), transform.position.y + (collY / 2) + yOffset) );
+        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 3), transform.position.y + (collY / 2) + yOffset) );
 
         if (!flyFlag)
         {
@@ -173,7 +173,7 @@ public class PlayerMovment : MonoBehaviour
             if (Input.GetAxis("Vertical")< 0)
                 vUp = -Vector2.up;
 
-            if(!Input.GetButton("Jump"))
+            if(!Input.GetButton("Jump") || grounded)
             {
                 flyFlag = false;
             }
