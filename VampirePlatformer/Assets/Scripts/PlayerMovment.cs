@@ -16,7 +16,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 move;
     private Rigidbody2D rb;
 
-    private bool grounded;
+    public bool grounded;
     private bool headHit; 
     public Transform groundCheck;
 
@@ -42,6 +42,7 @@ public class PlayerMovment : MonoBehaviour
     public GameObject test;
     public BoxCollider2D playerCollider;
     private float collY, collX;
+    private float startCollX, startCollY;
     void Flip() // flips crharacter sprite 
     {
         facingRight = !facingRight;
@@ -55,6 +56,8 @@ public class PlayerMovment : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
+        startCollX = playerCollider.size.x;
+        startCollY = playerCollider.size.y;
         currGravityScale = rb.gravityScale;
         currGlideTime = glideTime;
 
@@ -188,11 +191,13 @@ public class PlayerMovment : MonoBehaviour
         if(glideFlag || flyFlag)
         {
             anim.SetBool("BatJump", true);
+            playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
             //transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
             anim.SetBool("BatJump", false);
+            playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
             //transform.localScale = new Vector3(3, 3, 3);
         }
 
