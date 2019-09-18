@@ -18,6 +18,7 @@ public class PlayerMovment : MonoBehaviour
 
     private bool grounded;
     private bool headHit; 
+    public Transform groundCheck;
 
     [Tooltip("yoffset is height of ground check")]
     public float yOffset;
@@ -38,10 +39,9 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 vLeft,vRight,vUp,vDown;
     private Vector3 moveVector;
     private Animator anim;
- //   public GameObject test;
+    public GameObject test;
     public BoxCollider2D playerCollider;
     private float collY, collX;
-    private float startCollX, startCollY;
     void Flip() // flips crharacter sprite 
     {
         facingRight = !facingRight;
@@ -55,8 +55,6 @@ public class PlayerMovment : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
-        startCollX = playerCollider.size.x;
-        startCollY = playerCollider.size.y;
         currGravityScale = rb.gravityScale;
         currGlideTime = glideTime;
 
@@ -66,14 +64,14 @@ public class PlayerMovment : MonoBehaviour
     void FixedUpdate()
     {
         pos2d = transform.position;
-        collX = playerCollider.size.x * transform.localScale.x+0.1f;
+        collX = playerCollider.size.x * transform.localScale.x;
         collY = playerCollider.size.y * transform.localScale.y;
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
         //headHit= Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset), whatIsGround);
 
-        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX /2), transform.position.y - (collY / 2) + yOffset) );
-        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 3), transform.position.y + (collY / 2) + yOffset) );
+        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset) );
+        //Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset) );
 
         if (!flyFlag)
         {
@@ -127,7 +125,7 @@ public class PlayerMovment : MonoBehaviour
                 rb.velocity = new Vector2(moveInput * speed, 0);
                 //Debug.Log("zum");
 
-                if(Input.GetButton("Jump") && !grounded)
+                if(Input.GetButton("Jump"))
                 {
                     flyFlag = true;
                 }
@@ -161,7 +159,6 @@ public class PlayerMovment : MonoBehaviour
         }
         else
         {
-            
             vLeft = Vector2.zero;
             vRight = Vector2.zero;
             vUp = Vector2.zero;
@@ -178,9 +175,8 @@ public class PlayerMovment : MonoBehaviour
             if (Input.GetAxis("Vertical")< 0)
                 vUp = -Vector2.up;
 
-            if(!Input.GetButton("Jump") || grounded)
+            if(!Input.GetButton("Jump"))
             {
-                glideFlag = false;
                 flyFlag = false;
             }
 
@@ -192,13 +188,11 @@ public class PlayerMovment : MonoBehaviour
         if(glideFlag || flyFlag)
         {
             anim.SetBool("BatJump", true);
-            playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
             //transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
             anim.SetBool("BatJump", false);
-            playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
             //transform.localScale = new Vector3(3, 3, 3);
         }
 
@@ -207,7 +201,7 @@ public class PlayerMovment : MonoBehaviour
         prevVelocityY = rb.velocity.y;
     }
 
-   /* void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.layer == 8)
         {
@@ -218,12 +212,11 @@ public class PlayerMovment : MonoBehaviour
             }
         }
 
-    }*/
+    }
 
 
     private void DeathTrigger()
     {
     }
-//mala promena 
 
 }
