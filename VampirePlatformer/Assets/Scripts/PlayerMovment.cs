@@ -18,7 +18,6 @@ public class PlayerMovment : MonoBehaviour
 
     public bool grounded;
     private bool headHit; 
-    public Transform groundCheck;
 
     [Tooltip("yoffset is height of ground check")]
     public float yOffset;
@@ -39,7 +38,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 vLeft,vRight,vUp,vDown;
     private Vector3 moveVector;
     private Animator anim;
-    public GameObject test;
+ //   public GameObject test;
     public BoxCollider2D playerCollider;
     private float collY, collX;
     private float startCollX, startCollY;
@@ -128,7 +127,7 @@ public class PlayerMovment : MonoBehaviour
                 rb.velocity = new Vector2(moveInput * speed, 0);
                 //Debug.Log("zum");
 
-                if(Input.GetButton("Jump"))
+                if(Input.GetButton("Jump") && !grounded)
                 {
                     flyFlag = true;
                 }
@@ -162,6 +161,7 @@ public class PlayerMovment : MonoBehaviour
         }
         else
         {
+            glideFlag = false;
             vLeft = Vector2.zero;
             vRight = Vector2.zero;
             vUp = Vector2.zero;
