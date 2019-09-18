@@ -16,7 +16,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 move;
     private Rigidbody2D rb;
 
-    public bool grounded;
+    private bool grounded;
     private bool headHit; 
 
     [Tooltip("yoffset is height of ground check")]
