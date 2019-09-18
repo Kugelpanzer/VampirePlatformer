@@ -201,7 +201,7 @@ public class PlayerMovment : MonoBehaviour
         prevVelocityY = rb.velocity.y;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+   /* void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.layer == 8)
         {
@@ -212,7 +212,7 @@ public class PlayerMovment : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
 
     private void DeathTrigger()
