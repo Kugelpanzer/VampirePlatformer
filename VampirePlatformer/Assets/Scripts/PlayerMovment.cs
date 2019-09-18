@@ -223,5 +223,6 @@ public class PlayerMovment : MonoBehaviour
     private void DeathTrigger()
     {
     }
+//mala promena 
 
 }
