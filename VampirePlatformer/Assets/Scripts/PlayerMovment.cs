@@ -34,6 +34,7 @@ public class PlayerMovment : MonoBehaviour
     private bool glideFlag;
     private bool flyFlag;
     private bool wasGrounded;
+    private bool hasJump=true;
 
     private Vector2 vLeft,vRight,vUp,vDown;
     private Vector3 moveVector;
@@ -73,7 +74,13 @@ public class PlayerMovment : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (Input.GetButtonUp("Jump"))
+        {
+            hasJump = true;
+        }
+    }
     void FixedUpdate()
     {
         pos2d = transform.position;
@@ -86,20 +93,24 @@ public class PlayerMovment : MonoBehaviour
         Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX /2), transform.position.y - (collY / 2) + yOffset) );
         //Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 3), transform.position.y + (collY / 2) + yOffset) );
 
+
+
         if (!flyFlag)
         {
             rb.gravityScale = currGravityScale;
             //JUMPING
             if (currJumpReload <= 0)
             {
-                if (Input.GetButton/*Down*/("Jump") && grounded)
+                if (Input.GetButton/*Down*/("Jump") && grounded && hasJump)
                 {
                     rb.gravityScale = currGravityScale;
                     rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
                     Debug.Log("skok");
                     currJumpReload = jumpReload;
+                    hasJump = false;
                 }
             }
+
             else if(grounded)
             {
                 currJumpReload -= Time.deltaTime;
