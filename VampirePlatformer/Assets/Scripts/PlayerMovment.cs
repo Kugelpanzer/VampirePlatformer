@@ -49,6 +49,17 @@ public class PlayerMovment : MonoBehaviour
         Scaler.x *= -1;
         transform.localScale = Scaler;
     }
+    void FlipInput()
+    {
+        if (facingRight == false && moveInput < 0)
+        {
+            Flip();
+        }
+        else if (facingRight == true && moveInput > 0)
+        {
+            Flip();
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -147,17 +158,10 @@ public class PlayerMovment : MonoBehaviour
             {
                 //Debug.Log(rb.velocity.y);
             }
-            
 
 
-            if (facingRight == false && moveInput < 0)
-            {
-                Flip();
-            }
-            else if (facingRight == true && moveInput > 0)
-            {
-                Flip();
-            }
+
+            FlipInput();
         }
         else
         {
@@ -187,6 +191,7 @@ public class PlayerMovment : MonoBehaviour
             moveVector = (vLeft + vRight + vUp + vDown).normalized * speed * Time.deltaTime;
             rb.MovePosition(transform.position + moveVector);
             moveInput = Input.GetAxis("Horizontal") * speed;
+            rb.velocity = new Vector2(moveInput * speed, 0);
         }
 
         if(glideFlag || flyFlag)
