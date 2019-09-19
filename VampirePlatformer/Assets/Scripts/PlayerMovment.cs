@@ -92,7 +92,7 @@ public class PlayerMovment : MonoBehaviour
             //JUMPING
             if (currJumpReload <= 0)
             {
-                if (Input.GetButtonDown("Jump") && grounded)
+                if (Input.GetButton/*Down*/("Jump") && grounded)
                 {
                     rb.gravityScale = currGravityScale;
                     rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
