@@ -16,7 +16,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 move;
     private Rigidbody2D rb;
 
-    private bool grounded;
+    public bool grounded;
     private bool headHit; 
 
     [Tooltip("yoffset is height of ground check")]
@@ -31,8 +31,8 @@ public class PlayerMovment : MonoBehaviour
     private float currJumpReload;
 
     private float prevVelocityY;
-    private bool glideFlag;
-    private bool flyFlag;
+    public bool glideFlag;
+    public bool flyFlag;
     private bool wasGrounded;
     private bool hasJump=true;
 
@@ -84,7 +84,7 @@ public class PlayerMovment : MonoBehaviour
     void FixedUpdate()
     {
         pos2d = transform.position;
-        collX = playerCollider.size.x * transform.localScale.x+0.1f;
+        collX = playerCollider.size.x * transform.localScale.x+0.13f;
         collY = playerCollider.size.y * transform.localScale.y;
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
