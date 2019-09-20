@@ -10893,9 +10893,19 @@ PrefabInstance:
       propertyPath: jumpReload
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 1718710392879876030, guid: 43b9b57972268ea40bf2105e5c559046,
+        type: 3}
+      propertyPath: yOffset
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1718710392879876017, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
       propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718710392879876016, guid: 43b9b57972268ea40bf2105e5c559046,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1718710392879876031, guid: 43b9b57972268ea40bf2105e5c559046,
@@ -10922,11 +10932,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1718710392879876016, guid: 43b9b57972268ea40bf2105e5c559046,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43b9b57972268ea40bf2105e5c559046, type: 3}
