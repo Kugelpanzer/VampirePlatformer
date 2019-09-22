@@ -44,6 +44,12 @@ public class PlayerMovment : MonoBehaviour
     public BoxCollider2D playerCollider;
     private float collY, collX;
     private float startCollX, startCollY;
+
+    public bool getFlyFlag() {
+        return flyFlag;
+    }
+
+
     void Flip() // flips crharacter sprite 
     {
         facingRight = !facingRight;
