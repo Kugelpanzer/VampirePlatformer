@@ -20,7 +20,7 @@ public class PlayerMovment : MonoBehaviour
     private bool headHit; 
 
     [Tooltip("yoffset is height of ground check")]
-    public float yOffset;
+    public float yOffset=0.1f,xOffset=0.1f;
     public LayerMask whatIsGround;
 
     private Vector2 pos2d;
@@ -35,6 +35,7 @@ public class PlayerMovment : MonoBehaviour
     public bool flyFlag;
     private bool wasGrounded;
     private bool hasJump=true;
+    //public bool sideFlag, bottomFlag;
 
     private Vector2 vLeft,vRight,vUp,vDown;
     private Vector3 moveVector;
@@ -43,12 +44,19 @@ public class PlayerMovment : MonoBehaviour
     public BoxCollider2D playerCollider;
     private float collY, collX;
     private float startCollX, startCollY;
+
+    public bool getFlyFlag() {
+        return flyFlag;
+    }
+
+
     void Flip() // flips crharacter sprite 
     {
         facingRight = !facingRight;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+        xOffset = -xOffset;
     }
     void FlipInput()
     {
@@ -84,13 +92,24 @@ public class PlayerMovment : MonoBehaviour
     void FixedUpdate()
     {
         pos2d = transform.position;
-        collX = playerCollider.size.x * transform.localScale.x+0.13f;
+        collX = playerCollider.size.x * transform.localScale.x+ xOffset;
         collY = playerCollider.size.y * transform.localScale.y;
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
+        /*sideFlag= Physics2D.OverlapArea(new Vector2(transform.position.x - ((collX+xOffset) / 2), transform.position.y +((collY - yOffset) / 2)), new Vector2(transform.position.x + ((collX+xOffset) / 2), transform.position.y - ((collY-yOffset) / 2) ), whatIsGround);
+        if(!sideFlag && bottomFlag)
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }*/
         //headHit= Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset), whatIsGround);
 
-        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX /2), transform.position.y - (collY / 2) + yOffset) );
+
+        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset));
+       // Debug.DrawLine(new Vector2(transform.position.x - ((collX + xOffset) / 2), transform.position.y + ((collY - yOffset) / 2)), new Vector2(transform.position.x + ((collX + xOffset) / 2), transform.position.y - ((collY - yOffset) / 2)));
         //Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 3), transform.position.y + (collY / 2) + yOffset) );
 
 
