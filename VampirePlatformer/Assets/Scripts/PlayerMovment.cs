@@ -49,7 +49,7 @@ public class PlayerMovment : MonoBehaviour
     private float startCollX, startCollY;
 
 
-    public float testCol=0.2f,currCol;
+   // public float testCol=0.2f,currCol;
 
     public bool getFlyFlag() {
         return flyFlag;
@@ -240,15 +240,16 @@ public class PlayerMovment : MonoBehaviour
         }
         else 
         {
-            if (currCol <= 0)
-            {
-                SetVamp();
-                currCol = testCol;
-            }
-            else
-            {
-                currCol -= Time.deltaTime;
-            }
+            SetVamp();
+            /* if (currCol <= 0)
+             {
+                 SetVamp();
+                 currCol = testCol;
+             }
+             else
+             {
+            currCol -= Time.deltaTime;
+            }*/
             //transform.localScale = new Vector3(3, 3, 3);
         }
 
