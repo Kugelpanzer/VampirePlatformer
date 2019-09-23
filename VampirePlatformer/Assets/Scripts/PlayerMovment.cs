@@ -271,7 +271,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void DeathTrigger()
     {
-        Debug.Log("SMRT!");
+        
         controller.GetComponent<LevelController>().ResetLevel();
     }
     void OnTriggerEnter2D(Collider2D col)
