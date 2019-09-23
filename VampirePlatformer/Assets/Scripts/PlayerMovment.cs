@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovment : MonoBehaviour
 {
     public float speed;
+    public float batSpeed;
     public float jumpForce;
     public float glideTime=0.5f;
     private float currGlideTime;
@@ -20,7 +21,7 @@ public class PlayerMovment : MonoBehaviour
     private bool headHit; 
 
     [Tooltip("yoffset is height of ground check")]
-    public float yOffset;
+    public float yOffset=0.1f,xOffset=0.1f;
     public LayerMask whatIsGround;
 
     private Vector2 pos2d;
@@ -35,7 +36,10 @@ public class PlayerMovment : MonoBehaviour
     public bool flyFlag;
     private bool wasGrounded;
     private bool hasJump=true;
+    //public bool sideFlag, bottomFlag;
 
+
+    private GameObject controller;
     private Vector2 vLeft,vRight,vUp,vDown;
     private Vector3 moveVector;
     private Animator anim;
@@ -43,12 +47,22 @@ public class PlayerMovment : MonoBehaviour
     public BoxCollider2D playerCollider;
     private float collY, collX;
     private float startCollX, startCollY;
+
+
+   // public float testCol=0.2f,currCol;
+
+    public bool getFlyFlag() {
+        return flyFlag;
+    }
+
+
     void Flip() // flips crharacter sprite 
     {
         facingRight = !facingRight;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+        xOffset = -xOffset;
     }
     void FlipInput()
     {
@@ -64,6 +78,7 @@ public class PlayerMovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = GameObject.Find("Controller");
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
@@ -78,19 +93,31 @@ public class PlayerMovment : MonoBehaviour
     {
         if (Input.GetButtonUp("Jump"))
         {
+            SetBat();
             hasJump = true;
         }
     }
     void FixedUpdate()
     {
         pos2d = transform.position;
-        collX = playerCollider.size.x * transform.localScale.x+0.13f;
+        collX = playerCollider.size.x * transform.localScale.x+ xOffset;
         collY = playerCollider.size.y * transform.localScale.y;
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
+        /*sideFlag= Physics2D.OverlapArea(new Vector2(transform.position.x - ((collX+xOffset) / 2), transform.position.y +((collY - yOffset) / 2)), new Vector2(transform.position.x + ((collX+xOffset) / 2), transform.position.y - ((collY-yOffset) / 2) ), whatIsGround);
+        if(!sideFlag && bottomFlag)
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }*/
         //headHit= Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset), whatIsGround);
 
-        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX /2), transform.position.y - (collY / 2) + yOffset) );
+
+        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset));
+       // Debug.DrawLine(new Vector2(transform.position.x - ((collX + xOffset) / 2), transform.position.y + ((collY - yOffset) / 2)), new Vector2(transform.position.x + ((collX + xOffset) / 2), transform.position.y - ((collY - yOffset) / 2)));
         //Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 3), transform.position.y + (collY / 2) + yOffset) );
 
 
@@ -167,7 +194,7 @@ public class PlayerMovment : MonoBehaviour
             }
             if (!grounded)
             {
-                //Debug.Log(rb.velocity.y);
+                Debug.Log(rb.velocity.y);
             }
 
 
@@ -199,28 +226,47 @@ public class PlayerMovment : MonoBehaviour
                 flyFlag = false;
             }
 
-            moveVector = (vLeft + vRight + vUp + vDown).normalized * speed * Time.deltaTime;
+            moveVector = (vLeft + vRight + vUp + vDown).normalized * batSpeed * Time.deltaTime;
             rb.MovePosition(transform.position + moveVector);
             moveInput = Input.GetAxis("Horizontal") * speed;
             rb.velocity = new Vector2(moveInput * speed, 0);
+            FlipInput();
         }
 
-        if(glideFlag || flyFlag)
+        if((glideFlag || flyFlag || rb.velocity.y>0)&& !grounded)
         {
-            anim.SetBool("BatJump", true);
-            playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+            SetBat();
             //transform.localScale = new Vector3(1, 1, 1);
         }
-        else
+        else 
         {
-            anim.SetBool("BatJump", false);
-            playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
+            SetVamp();
+            /* if (currCol <= 0)
+             {
+                 SetVamp();
+                 currCol = testCol;
+             }
+             else
+             {
+            currCol -= Time.deltaTime;
+            }*/
             //transform.localScale = new Vector3(3, 3, 3);
         }
 
 
         //sets prevVelocityY
         prevVelocityY = rb.velocity.y;
+    }
+
+    private void SetBat()
+    {
+        anim.SetBool("BatJump", true);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+    }
+    private void SetVamp()
+    {
+        anim.SetBool("BatJump", false);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
     }
 
    /* void OnCollisionEnter2D(Collision2D col)
@@ -239,7 +285,17 @@ public class PlayerMovment : MonoBehaviour
 
     private void DeathTrigger()
     {
+        
+        controller.GetComponent<LevelController>().ResetLevel();
     }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Death")
+        {
+            DeathTrigger();
+        }
+    }
+
 //mala promena 
 
 }

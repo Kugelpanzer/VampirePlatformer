@@ -19,15 +19,7 @@ public class ProjectileCollision : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-        if (col.gameObject.tag == "Wall")
-        {
-
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
 }
