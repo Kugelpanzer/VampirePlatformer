@@ -10906,7 +10906,7 @@ PrefabInstance:
     - target: {fileID: 1718710392879876030, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
       propertyPath: xOffset
-      value: -0.1
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1718710392879876030, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
@@ -10916,6 +10916,11 @@ PrefabInstance:
     - target: {fileID: 1718710392879876017, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
       propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718710392879876017, guid: 43b9b57972268ea40bf2105e5c559046,
+        type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1718710392879876016, guid: 43b9b57972268ea40bf2105e5c559046,
