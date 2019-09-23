@@ -37,6 +37,8 @@ public class PlayerMovment : MonoBehaviour
     private bool hasJump=true;
     //public bool sideFlag, bottomFlag;
 
+
+    private GameObject controller;
     private Vector2 vLeft,vRight,vUp,vDown;
     private Vector3 moveVector;
     private Animator anim;
@@ -72,6 +74,7 @@ public class PlayerMovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = GameObject.Find("Controller");
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
@@ -225,12 +228,12 @@ public class PlayerMovment : MonoBehaviour
             rb.velocity = new Vector2(moveInput * speed, 0);
         }
 
-        if(glideFlag || flyFlag)
+        if((glideFlag || flyFlag || rb.velocity.y>0)&& !grounded)
         {
             SetBat();
             //transform.localScale = new Vector3(1, 1, 1);
         }
-        else
+        else 
         {
             SetVamp();
             //transform.localScale = new Vector3(3, 3, 3);
@@ -268,7 +271,17 @@ public class PlayerMovment : MonoBehaviour
 
     private void DeathTrigger()
     {
+        Debug.Log("SMRT!");
+        controller.GetComponent<LevelController>().ResetLevel();
     }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Death")
+        {
+            DeathTrigger();
+        }
+    }
+
 //mala promena 
 
 }
