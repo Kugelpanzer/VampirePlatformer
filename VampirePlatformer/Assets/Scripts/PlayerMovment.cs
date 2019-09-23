@@ -86,6 +86,7 @@ public class PlayerMovment : MonoBehaviour
     {
         if (Input.GetButtonUp("Jump"))
         {
+            SetBat();
             hasJump = true;
         }
     }
@@ -186,7 +187,7 @@ public class PlayerMovment : MonoBehaviour
             }
             if (!grounded)
             {
-                //Debug.Log(rb.velocity.y);
+                Debug.Log(rb.velocity.y);
             }
 
 
@@ -226,20 +227,29 @@ public class PlayerMovment : MonoBehaviour
 
         if(glideFlag || flyFlag)
         {
-            anim.SetBool("BatJump", true);
-            playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+            SetBat();
             //transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            anim.SetBool("BatJump", false);
-            playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
+            SetVamp();
             //transform.localScale = new Vector3(3, 3, 3);
         }
 
 
         //sets prevVelocityY
         prevVelocityY = rb.velocity.y;
+    }
+
+    private void SetBat()
+    {
+        anim.SetBool("BatJump", true);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+    }
+    private void SetVamp()
+    {
+        anim.SetBool("BatJump", false);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
     }
 
    /* void OnCollisionEnter2D(Collision2D col)
