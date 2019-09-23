@@ -225,8 +225,8 @@ public class PlayerMovment : MonoBehaviour
 
             moveVector = (vLeft + vRight + vUp + vDown).normalized * batSpeed * Time.deltaTime;
             rb.MovePosition(transform.position + moveVector);
-            moveInput = Input.GetAxis("Horizontal") * batSpeed;
-            rb.velocity = new Vector2(moveInput * batSpeed, 0);
+            moveInput = Input.GetAxis("Horizontal") * speed;
+            rb.velocity = new Vector2(moveInput * speed, 0);
             FlipInput();
         }
 
