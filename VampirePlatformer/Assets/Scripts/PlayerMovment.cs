@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovment : MonoBehaviour
 {
     public float speed;
+    public float batSpeed;
     public float jumpForce;
     public float glideTime=0.5f;
     private float currGlideTime;
@@ -222,10 +223,10 @@ public class PlayerMovment : MonoBehaviour
                 flyFlag = false;
             }
 
-            moveVector = (vLeft + vRight + vUp + vDown).normalized * speed * Time.deltaTime;
+            moveVector = (vLeft + vRight + vUp + vDown).normalized * batSpeed * Time.deltaTime;
             rb.MovePosition(transform.position + moveVector);
-            moveInput = Input.GetAxis("Horizontal") * speed;
-            rb.velocity = new Vector2(moveInput * speed, 0);
+            moveInput = Input.GetAxis("Horizontal") * batSpeed;
+            rb.velocity = new Vector2(moveInput * batSpeed, 0);
             FlipInput();
         }
 
