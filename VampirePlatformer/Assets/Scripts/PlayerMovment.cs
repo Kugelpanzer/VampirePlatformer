@@ -226,6 +226,7 @@ public class PlayerMovment : MonoBehaviour
             rb.MovePosition(transform.position + moveVector);
             moveInput = Input.GetAxis("Horizontal") * speed;
             rb.velocity = new Vector2(moveInput * speed, 0);
+            FlipInput();
         }
 
         if((glideFlag || flyFlag || rb.velocity.y>0)&& !grounded)
