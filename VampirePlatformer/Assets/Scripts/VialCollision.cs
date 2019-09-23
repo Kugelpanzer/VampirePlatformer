@@ -7,10 +7,12 @@ public class VialCollision : MonoBehaviour
 
     private ScoreCounter scoreCounter;
     public GameObject scoreText;
+    public int VialScore = 200;
     // Start is called before the first frame update
     void Start()
     {
-        scoreCounter = scoreText.GetComponent<ScoreCounter>();
+
+        scoreCounter = GameObject.Find("Controller").GetComponent<ScoreCounter>(); //scoreText.GetComponent<ScoreCounter>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class VialCollision : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            scoreCounter.Score += 200;
+            scoreCounter.Score += VialScore;
         }
 
 

@@ -237,6 +237,7 @@ MonoBehaviour:
   projectile: {fileID: 4136866626062268346, guid: 8043241fd5c81fd4b96bf4735095730e,
     type: 3}
   projetileSpeed: 10
+  facingLeft: 1
 --- !u!212 &373587312
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -431,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d1a7b058926cb4fa8ef1fa8f0e3af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedY: 1
+  speedY: 0
   speedX: 0
   constraintLeft: 200
   constraintRight: 200
