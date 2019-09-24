@@ -234,10 +234,14 @@ public class PlayerMovment : MonoBehaviour
             FlipInput();
         }
 
-        if((glideFlag || flyFlag || rb.velocity.y>0)&& !grounded)
+        if((glideFlag ||  rb.velocity.y>0)&& !grounded && !flyFlag)
         {
             SetBat();
             //transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (flyFlag && !grounded)
+        {
+            SetFlyBat();
         }
         else 
         {
@@ -263,10 +267,22 @@ public class PlayerMovment : MonoBehaviour
     {
         anim.SetBool("BatJump", true);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+
+    }
+    private void SetFlyBat()
+    {
+        anim.SetBool("FlyBat", true);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+
+       
     }
     private void SetVamp()
     {
         anim.SetBool("BatJump", false);
+        anim.SetBool("FlyBat", false);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
     }
 
