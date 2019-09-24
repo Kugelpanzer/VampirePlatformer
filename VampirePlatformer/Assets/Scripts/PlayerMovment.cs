@@ -93,7 +93,6 @@ public class PlayerMovment : MonoBehaviour
     {
         if (Input.GetButtonUp("Jump"))
         {
-            SetBat();
             hasJump = true;
         }
     }
@@ -132,7 +131,6 @@ public class PlayerMovment : MonoBehaviour
                 {
                     rb.gravityScale = currGravityScale;
                     rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
-                    Debug.Log("skok");
                     currJumpReload = jumpReload;
                     hasJump = false;
                 }
@@ -168,7 +166,6 @@ public class PlayerMovment : MonoBehaviour
                 glideFlag = true;
                 /* Instantiate(test);
                  test.transform.position = transform.position;*/
-                Debug.Log("zum");
             }
             else if (glideFlag)
             {
@@ -181,7 +178,11 @@ public class PlayerMovment : MonoBehaviour
                     flyFlag = true;
                 }
                 //Change to bat 
-
+                /*if (grounded)
+                {
+                    glideFlag = false;
+                    currGlideTime = glideTime;
+                }*/
                 if (currGlideTime <= 0)
                 {
                     glideFlag = false;
@@ -194,7 +195,7 @@ public class PlayerMovment : MonoBehaviour
             }
             if (!grounded)
             {
-                Debug.Log(rb.velocity.y);
+               // Debug.Log(rb.velocity.y);
             }
 
 
