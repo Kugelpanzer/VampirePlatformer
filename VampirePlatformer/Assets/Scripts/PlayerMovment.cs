@@ -49,7 +49,12 @@ public class PlayerMovment : MonoBehaviour
     private float startCollX, startCollY;
 
 
-   // public float testCol=0.2f,currCol;
+    private EdgeCollider2D playerEdge;
+    private Vector2[] edgePoints,halfEdgePoints;
+    private List<Vector2> ePoints = new List<Vector2>();
+
+
+    // public float testCol=0.2f,currCol;
 
     public bool getFlyFlag() {
         return flyFlag;
@@ -82,13 +87,37 @@ public class PlayerMovment : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
+
+        playerEdge = GetComponent<EdgeCollider2D>();
+        edgePoints = playerEdge.points;
+        halfEdgePoints = playerEdge.points;
+        for (int i = 0; i < edgePoints.Length; i++)
+        {
+            ePoints.Add(edgePoints[i]);
+            ePoints[i] *= transform.localScale;
+            halfEdgePoints[i].y = edgePoints[i].y / 2;
+        }
+
         startCollX = playerCollider.size.x;
         startCollY = playerCollider.size.y;
         currGravityScale = rb.gravityScale;
         currGlideTime = glideTime;
 
-    }
 
+        collX = playerCollider.size.x * transform.localScale.x + xOffset;
+        collY = playerCollider.size.y * transform.localScale.y;
+
+
+
+    }
+    void setEPoint(Vector2[] pointList)
+    {
+        ePoints.Clear();
+        for (int i = 0; i < pointList.Length; i++)
+        {
+            ePoints.Add(pointList[i]*transform.localScale);
+        }
+    }
     private void Update()
     {
         if (Input.GetButtonUp("Jump"))
@@ -99,10 +128,18 @@ public class PlayerMovment : MonoBehaviour
     void FixedUpdate()
     {
         pos2d = transform.position;
-        collX = playerCollider.size.x * transform.localScale.x+ xOffset;
-        collY = playerCollider.size.y * transform.localScale.y;
+
+
+
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
+
+
+        //grounded = Physics2D.OverlapArea(new Vector2(transform.position.x-(collX/2),transform.position.y-(collY/2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2)-yOffset), whatIsGround);
+        grounded= Physics2D.OverlapArea(new Vector2(transform.position.x + (ePoints[2].x+xOffset), transform.position.y + (ePoints[2].y)), new Vector2(transform.position.x + (ePoints[3].x - xOffset), transform.position.y + (ePoints[3].y) - yOffset), whatIsGround);
+
+
+
+
         /*sideFlag= Physics2D.OverlapArea(new Vector2(transform.position.x - ((collX+xOffset) / 2), transform.position.y +((collY - yOffset) / 2)), new Vector2(transform.position.x + ((collX+xOffset) / 2), transform.position.y - ((collY-yOffset) / 2) ), whatIsGround);
         if(!sideFlag && bottomFlag)
         {
@@ -114,8 +151,9 @@ public class PlayerMovment : MonoBehaviour
         }*/
         //headHit= Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y + (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y + (collY / 2) + yOffset), whatIsGround);
 
+        
+        Debug.DrawLine(new Vector2(transform.position.x +(ePoints[2].x+xOffset ), transform.position.y + (ePoints[2].y )), new Vector2(transform.position.x + (ePoints[3].x - xOffset), transform.position.y + (ePoints[3].y ) - yOffset),Color.red);
 
-        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset));
        // Debug.DrawLine(new Vector2(transform.position.x - ((collX + xOffset) / 2), transform.position.y + ((collY - yOffset) / 2)), new Vector2(transform.position.x + ((collX + xOffset) / 2), transform.position.y - ((collY - yOffset) / 2)));
         //Debug.DrawLine(new Vector2(transform.position.x - (collX / 3), transform.position.y + (collY / 2)) , new Vector2(transform.position.x + (collX / 3), transform.position.y + (collY / 2) + yOffset) );
 
@@ -173,7 +211,7 @@ public class PlayerMovment : MonoBehaviour
                 rb.velocity = new Vector2(moveInput * speed, 0);
                 //Debug.Log("zum");
 
-                if(Input.GetButton("Jump") && !grounded)
+                if(Input.GetButton("Jump") )
                 {
                     flyFlag = true;
                 }
@@ -268,22 +306,27 @@ public class PlayerMovment : MonoBehaviour
         anim.SetBool("BatJump", true);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
+        playerEdge.points = halfEdgePoints;
+        setEPoint(halfEdgePoints);
 
     }
     private void SetFlyBat()
     {
         anim.SetBool("FlyBat", true);
-        playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
-       
+        playerEdge.points = halfEdgePoints;
+        setEPoint(halfEdgePoints);
+
     }
     private void SetVamp()
     {
         anim.SetBool("BatJump", false);
         anim.SetBool("FlyBat", false);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
+
+        playerEdge.points = edgePoints;
+        setEPoint(edgePoints);
     }
 
    /* void OnCollisionEnter2D(Collision2D col)
