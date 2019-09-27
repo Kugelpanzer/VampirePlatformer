@@ -309,14 +309,22 @@ public class PlayerMovment : MonoBehaviour
         playerEdge.points = halfEdgePoints;
         setEPoint(halfEdgePoints);
 
+        playerEdge.offset = new Vector2(0, 0.15f);
+        playerCollider.offset= new Vector2(0, 0.1475f);
+
     }
     private void SetFlyBat()
     {
         anim.SetBool("FlyBat", true);
-         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
         playerEdge.points = halfEdgePoints;
         setEPoint(halfEdgePoints);
+
+        playerEdge.offset = new Vector2(0,0.15f);
+        playerCollider.offset = new Vector2(0, 0.1475f);
+
+
 
     }
     private void SetVamp()
@@ -327,6 +335,9 @@ public class PlayerMovment : MonoBehaviour
 
         playerEdge.points = edgePoints;
         setEPoint(edgePoints);
+
+        playerEdge.offset = new Vector2(0, 0);
+        playerCollider.offset = new Vector2(0, 0);
     }
 
    /* void OnCollisionEnter2D(Collision2D col)
