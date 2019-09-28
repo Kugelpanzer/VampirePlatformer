@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: 63364e424ec957b4da0b604c7f7bc7ae
+guid: 4ed981930adb49847a742d5c44e78f37
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5397114383158657131
-    second: Vampwalk1_0
+      213: -8372774509887197982
+    second: idle 5_0
   - first:
-      213: 7062107582616124650
-    second: Vampwalk1_1
+      213: -1140933326543609820
+    second: idle 5_1
   - first:
-      213: -7967773020301328883
-    second: Vampwalk1_2
+      213: 2081876257815247474
+    second: idle 5_2
   - first:
-      213: 5525184412742285357
-    second: Vampwalk1_3
+      213: -4904663203334656419
+    second: idle 5_3
   - first:
-      213: -1785961089483977587
-    second: Vampwalk1_4
+      213: -1247060358203725141
+    second: idle 5_4
   - first:
-      213: -8393768597372969726
-    second: Vampwalk1_5
+      213: 9035849405917913714
+    second: idle 5_5
   - first:
-      213: 7728367414464701854
-    second: Vampwalk1_6
+      213: 2952899527818431355
+    second: idle 5_6
   - first:
-      213: -5838261001234484466
-    second: Vampwalk1_7
+      213: 5022950778730136535
+    second: idle 5_7
   - first:
-      213: -4808914888714239181
-    second: Vampwalk1_8
+      213: 2176350924660114456
+    second: idle 5_8
   - first:
-      213: -2843274925559098434
-    second: Vampwalk1_9
+      213: -2527024278679456598
+    second: idle 5_9
   - first:
-      213: 3645492120952119660
-    second: Vampwalk1_10
+      213: -5466397622525879776
+    second: idle 5_10
   - first:
-      213: 1486163435168952867
-    second: Vampwalk1_11
+      213: -4831525255999746986
+    second: idle 5_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -83,7 +83,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -122,253 +122,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vampwalk1_0
+      name: idle 5_0
       rect:
         serializedVersion: 2
         x: 0
         y: 222
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 412e9c19236013f4c91994386691e3aa
-      internalID: -5397114383158657131
+      spriteID: af876741bebd86148a53ad46f1aa13eb
+      internalID: -8372774509887197982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_1
+      name: idle 5_1
       rect:
         serializedVersion: 2
         x: 74
         y: 222
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86ed8675ddd27bf44960c1babdcca857
-      internalID: 7062107582616124650
+      spriteID: 2ece21bf00d384649b1f43c86ed9312e
+      internalID: -1140933326543609820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_2
+      name: idle 5_2
       rect:
         serializedVersion: 2
         x: 148
         y: 222
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcd1c4368b38cb0478f34623311617f6
-      internalID: -7967773020301328883
+      spriteID: 6a3d5f1fa7dd611439d00e9c5c596471
+      internalID: 2081876257815247474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_3
+      name: idle 5_3
       rect:
         serializedVersion: 2
         x: 0
         y: 148
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4ca45a2d872c1e4498b880aa1513711
-      internalID: 5525184412742285357
+      spriteID: b209a5534bc513146b294736d2593973
+      internalID: -4904663203334656419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_4
+      name: idle 5_4
       rect:
         serializedVersion: 2
         x: 74
         y: 148
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70034d523d9f7c94287d70915330a4f9
-      internalID: -1785961089483977587
+      spriteID: e32369c00adcd8a42ae475f92dddc5b7
+      internalID: -1247060358203725141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_5
+      name: idle 5_5
       rect:
         serializedVersion: 2
         x: 148
         y: 148
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8a3a9a2f1cd1344dabd388c052d9f5f
-      internalID: -8393768597372969726
+      spriteID: cee64afce169a5c4e91c993f34376e4b
+      internalID: 9035849405917913714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_6
+      name: idle 5_6
       rect:
         serializedVersion: 2
         x: 0
         y: 74
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 025624af9f17b8444b7e589e484979b7
-      internalID: 7728367414464701854
+      spriteID: 46a5e9a24c2f83a4087b1aa410e27c89
+      internalID: 2952899527818431355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_7
+      name: idle 5_7
       rect:
         serializedVersion: 2
         x: 74
         y: 74
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82f2527fe7c4ee543a8df990d08faaec
-      internalID: -5838261001234484466
+      spriteID: 3847aba7fc78cc84fa88268de96ea6f3
+      internalID: 5022950778730136535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_8
+      name: idle 5_8
       rect:
         serializedVersion: 2
         x: 148
         y: 74
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26efa89aad2e78b4f99a92cc316997b6
-      internalID: -4808914888714239181
+      spriteID: 4dd9a8dd1bf35fe4fb4823d66105af8c
+      internalID: 2176350924660114456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_9
+      name: idle 5_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ff7792108697e04b8bd1f825c0ad7df
-      internalID: -2843274925559098434
+      spriteID: aa0ae5f1271b49b4c81d7bc40e471634
+      internalID: -2527024278679456598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_10
+      name: idle 5_10
       rect:
         serializedVersion: 2
         x: 74
         y: 0
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e543fd0f9b77274fbb086b6d2d49a76
-      internalID: 3645492120952119660
+      spriteID: 36fa01682eef22649997ef68fa27ee38
+      internalID: -5466397622525879776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vampwalk1_11
+      name: idle 5_11
       rect:
         serializedVersion: 2
         x: 148
         y: 0
         width: 74
         height: 74
-      alignment: 9
-      pivot: {x: 0.3918919, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bebc3a70d26fea44bc237a02a587c52
-      internalID: 1486163435168952867
+      spriteID: 28b5693a1edb40c4192471897b032356
+      internalID: -4831525255999746986
       vertices: []
       indices: 
       edges: []
