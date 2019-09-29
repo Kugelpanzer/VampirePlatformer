@@ -269,9 +269,8 @@ public class PlayerMovment : MonoBehaviour
         {
             if (grounded && Input.GetAxis("Horizontal") != 0)
             {
-                if (!anim.GetBool("Walk"))
+                if (anim.GetInteger("State")!=4)
                 {
-                    Debug.Log("kretanje ");
                     SetVampRun();
                 }
             }
@@ -280,6 +279,8 @@ public class PlayerMovment : MonoBehaviour
                 Debug.Log("stajanje ");
                 SetVamp();
             }
+            
+
         }
 
 
@@ -289,7 +290,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void SetBat()
     {
-        anim.SetBool("BatJump", true);
+        anim.SetInteger("State", 2);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
 
@@ -298,19 +299,20 @@ public class PlayerMovment : MonoBehaviour
     }
     private void SetFlyBat()
     {
-        anim.SetBool("FlyBat", true);
+        anim.SetInteger("State", 3);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
 
         playerCollider.offset = new Vector2(0, 0.1475f);
 
     }
-
+    private void SetFall()
+    {
+        anim.SetInteger("State", 5);
+    }
     private void SetVamp()
     {
-        anim.SetBool("BatJump", false);
-        anim.SetBool("FlyBat", false);
-        anim.SetBool("Walk", false);
+        anim.SetInteger("State", 0);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
 
         playerCollider.offset = new Vector2(0, 0);
@@ -318,7 +320,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void SetVampRun()
     {
-        anim.SetBool("Walk", true);
+        anim.SetInteger("State", 4);
 
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
 
@@ -326,11 +328,14 @@ public class PlayerMovment : MonoBehaviour
     }
     private void VampJump()
     {
-        anim.SetBool("ManJump", true);
+        anim.SetInteger("State", 1);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
+
+        playerCollider.offset = new Vector2(0, 0);
     }
     public void EndJump()
     {
-        anim.SetBool("ManJump", false);
+        Debug.Log("skok");
         SetBat();
     }
 
