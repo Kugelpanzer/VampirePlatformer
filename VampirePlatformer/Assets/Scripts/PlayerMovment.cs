@@ -115,6 +115,7 @@ public class PlayerMovment : MonoBehaviour
 
 
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset), whatIsGround);
+        Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset));
 
 
 
@@ -255,7 +256,7 @@ public class PlayerMovment : MonoBehaviour
         #region animation
 
 
-        if ((glideFlag || rb.velocity.y > 0) && !grounded && !flyFlag)
+        if ((glideFlag || rb.velocity.y > 0) && !grounded && !flyFlag && anim.GetInteger("State") !=2)
         {
             VampJump();
             //SetBat();
@@ -276,7 +277,7 @@ public class PlayerMovment : MonoBehaviour
             }
             else if (grounded)
             {
-                Debug.Log("stajanje ");
+               // Debug.Log("stajanje ");
                 SetVamp();
             }
             
@@ -294,7 +295,7 @@ public class PlayerMovment : MonoBehaviour
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
 
-        playerCollider.offset = new Vector2(0, 0.1475f);
+    
 
     }
     private void SetFlyBat()
@@ -303,7 +304,6 @@ public class PlayerMovment : MonoBehaviour
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY / 2);
 
 
-        playerCollider.offset = new Vector2(0, 0.1475f);
 
     }
     private void SetFall()
@@ -324,20 +324,19 @@ public class PlayerMovment : MonoBehaviour
 
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
 
-        playerCollider.offset = new Vector2(0, 0);
     }
     private void VampJump()
     {
         anim.SetInteger("State", 1);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
 
-        playerCollider.offset = new Vector2(0, 0);
     }
     public void EndJump()
     {
         Debug.Log("skok");
         SetBat();
     }
+
 
     #endregion
     /* void OnCollisionEnter2D(Collision2D col)
