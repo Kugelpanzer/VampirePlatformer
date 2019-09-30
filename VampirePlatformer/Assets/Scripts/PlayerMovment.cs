@@ -36,6 +36,7 @@ public class PlayerMovment : MonoBehaviour
     public bool flyFlag;
     private bool wasGrounded;
     private bool hasJump = true;
+    private bool jumped;
     //public bool sideFlag, bottomFlag;
 
 
@@ -91,8 +92,7 @@ public class PlayerMovment : MonoBehaviour
         currGlideTime = glideTime;
 
 
-        collX = playerCollider.size.x * transform.localScale.x + xOffset;
-        collY = playerCollider.size.y * transform.localScale.y;
+
 
 
 
@@ -113,7 +113,8 @@ public class PlayerMovment : MonoBehaviour
 
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-
+        collX = playerCollider.size.x * transform.localScale.x + xOffset;
+        collY = playerCollider.size.y * transform.localScale.y;
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset), whatIsGround);
         Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset));
 
@@ -151,6 +152,7 @@ public class PlayerMovment : MonoBehaviour
                     rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
                     currJumpReload = jumpReload;
                     hasJump = false;
+                    jumped = true;
                 }
             }
 
@@ -182,6 +184,7 @@ public class PlayerMovment : MonoBehaviour
             {
                 wasGrounded = false;
                 glideFlag = true;
+                jumped = false;
                 /* Instantiate(test);
                  test.transform.position = transform.position;*/
             }
@@ -194,6 +197,7 @@ public class PlayerMovment : MonoBehaviour
                 if (Input.GetButton("Jump"))
                 {
                     flyFlag = true;
+                    
                 }
                 //Change to bat 
                 /*if (grounded)
@@ -255,16 +259,20 @@ public class PlayerMovment : MonoBehaviour
 
         #region animation
 
-
-        if ((glideFlag || rb.velocity.y > 0) && !grounded && !flyFlag && anim.GetInteger("State") !=2)
+        /*if (flyFlag )
+        {
+            SetFlyBat();
+        }
+        else if ((glideFlag || rb.velocity.y > 0) && !grounded && !flyFlag && anim.GetInteger("State") !=2  && jumped)
         {
             VampJump();
             //SetBat();
             //transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (flyFlag /*&& !grounded*/)
+
+        else if(rb.velocity.y<0 && !grounded && !glideFlag && !flyFlag)
         {
-            SetFlyBat();
+            SetFall();
         }
         else
         {
@@ -282,6 +290,37 @@ public class PlayerMovment : MonoBehaviour
             }
             
 
+        }*/
+        if(grounded && !flyFlag && !glideFlag)
+        {
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                if (anim.GetInteger("State") != 4)
+                {
+                    SetVampRun();
+                }
+            }
+            else
+            {
+                // Debug.Log("stajanje ");
+                SetVamp();
+            }
+        }
+        else if (flyFlag)
+        {
+            SetFlyBat();
+        }
+        else if (glideFlag)
+        {
+            SetBat();
+        }
+        else if(jumped &&  anim.GetInteger("State") != 2)
+        {
+            VampJump();
+        }
+        else if (rb.velocity.y < 0 && !grounded && !glideFlag && !flyFlag)
+        {
+            SetFall();
         }
 
 
@@ -309,13 +348,13 @@ public class PlayerMovment : MonoBehaviour
     private void SetFall()
     {
         anim.SetInteger("State", 5);
+        playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
     }
     private void SetVamp()
     {
         anim.SetInteger("State", 0);
         playerCollider.size = new Vector2(playerCollider.size.x, startCollY);
 
-        playerCollider.offset = new Vector2(0, 0);
     }
 
     private void SetVampRun()
@@ -363,6 +402,10 @@ public class PlayerMovment : MonoBehaviour
         if (col.gameObject.tag == "Death")
         {
             DeathTrigger();
+        }
+        if (col.gameObject.tag == "Victory")
+        {
+
         }
     }
 
