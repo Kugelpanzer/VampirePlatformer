@@ -24,12 +24,12 @@ public class GargoyleFireProjectile : MonoBehaviour
     void Update()
     {
         int sign = 1;
-        float offsetX = 0.6F;
+        float offsetX = 1.5F;
         if(!facingLeft)
         {
             sign = -1;
         }
-        Vector3 offset = new Vector3(-1* offsetX* sign, 0, 0);
+        Vector3 offset = new Vector3(-1* offsetX* sign, -0.25f, 0);
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= attackCooldown)
         {
