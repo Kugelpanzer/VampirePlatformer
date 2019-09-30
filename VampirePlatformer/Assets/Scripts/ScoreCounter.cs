@@ -33,8 +33,7 @@ public class ScoreCounter : MonoBehaviour
         {
             Score-= Time.deltaTime * FlyDrainPerSecond; 
         }
-
-        if(Score <= 50)
+        else if(Score <= 50)
         {
             Score += Time.deltaTime * RegenPerSecond;
         }
