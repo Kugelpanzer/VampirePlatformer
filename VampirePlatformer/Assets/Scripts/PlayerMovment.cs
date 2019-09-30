@@ -49,6 +49,9 @@ public class PlayerMovment : MonoBehaviour
     private float collY, collX;
     private float startCollX, startCollY;
 
+    public float pushX = 0;
+    public float pushDecay = 10f;
+    public float pushIntensity = 10f;
 
     // public float testCol=0.2f,currCol;
 
@@ -67,11 +70,11 @@ public class PlayerMovment : MonoBehaviour
     }
     void FlipInput()
     {
-        if (facingRight == false && moveInput < 0)
+        if (facingRight == false && Input.GetAxis("Horizontal") < 0)
         {
             Flip();
         }
-        else if (facingRight == true && moveInput > 0)
+        else if (facingRight == true && Input.GetAxis("Horizontal") > 0)
         {
             Flip();
         }
@@ -105,16 +108,28 @@ public class PlayerMovment : MonoBehaviour
             hasJump = true;
         }
     }
+
     void FixedUpdate()
     {
         pos2d = transform.position;
 
-
+        Vector2 push = new Vector2(0, 0);
+        if (pushX > 0)
+        {
+            push = new Vector2(pushIntensity, 0);
+            pushX -= pushDecay;
+        }
+        if (pushX < 0)
+        {
+            push = new Vector2(-pushIntensity, 0);
+            pushX += pushDecay;
+        }
 
         //grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
         collX = playerCollider.size.x * transform.localScale.x + xOffset;
         collY = playerCollider.size.y * transform.localScale.y;
+
         grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset), whatIsGround);
         Debug.DrawLine(new Vector2(transform.position.x - (collX / 2), transform.position.y - (collY / 2)), new Vector2(transform.position.x + (collX / 2), transform.position.y - (collY / 2) - yOffset));
 
@@ -149,7 +164,8 @@ public class PlayerMovment : MonoBehaviour
                 if (Input.GetButton/*Down*/("Jump") && grounded && hasJump)
                 {
                     rb.gravityScale = currGravityScale;
-                    rb.velocity += Vector2.up * jumpForce * Time.deltaTime;
+                    rb.velocity += (Vector2.up * jumpForce * Time.deltaTime + push);
+                    Debug.Log(rb.velocity);
                     currJumpReload = jumpReload;
                     hasJump = false;
                     jumped = true;
@@ -172,12 +188,18 @@ public class PlayerMovment : MonoBehaviour
                 {
 
                     //rb.MovePosition(transform.position + new Vector3(speed, 0, 0) * Time.deltaTime);
-                    rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+                    rb.velocity = (new Vector2(moveInput * speed, rb.velocity.y) + push);
+
                 }
                 else if (Input.GetAxis("Horizontal") < 0)
                 {
                     // rb.MovePosition(transform.position + new Vector3(-speed, 0, 0) * Time.deltaTime);
-                    rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+                    rb.velocity = (new Vector2(moveInput * speed, rb.velocity.y) + push);
+
+                }
+                else if (push != Vector2.zero)
+                {
+                    rb.velocity = push;
                 }
             }
             else if (!grounded && rb.velocity.y >= -0.1 && rb.velocity.y <= 0.1 && currJumpReload > 0 && !glideFlag && wasGrounded)
@@ -191,13 +213,12 @@ public class PlayerMovment : MonoBehaviour
             else if (glideFlag)
             {
                 rb.gravityScale = 0;
-                rb.velocity = new Vector2(moveInput * speed, 0);
+                rb.velocity = (new Vector2(moveInput * speed, 0) + push);
                 //Debug.Log("zum");
 
                 if (Input.GetButton("Jump"))
                 {
                     flyFlag = true;
-                    
                 }
                 //Change to bat 
                 /*if (grounded)
@@ -226,7 +247,6 @@ public class PlayerMovment : MonoBehaviour
         }
         else
         {
-
             vLeft = Vector2.zero;
             vRight = Vector2.zero;
             vUp = Vector2.zero;
@@ -243,13 +263,15 @@ public class PlayerMovment : MonoBehaviour
             if (Input.GetAxis("Vertical") < 0)
                 vUp = -Vector2.up;
 
-            if (!Input.GetButton("Jump") || controller.GetComponent<ScoreCounter>().Score <= 0/* || grounded*/)
+            if (!Input.GetButton("Jump") || controller.GetComponent<ScoreCounter>().Score <= 0 || grounded)
             {
                 glideFlag = false;
                 flyFlag = false;
             }
 
+
             moveVector = (vLeft + vRight + vUp + vDown).normalized * batSpeed * Time.deltaTime;
+            moveVector += (Vector3)push.normalized;
             rb.MovePosition(transform.position + moveVector);
             moveInput = Input.GetAxis("Horizontal") * speed;
             rb.velocity = new Vector2(moveInput * speed, 0);
@@ -291,7 +313,7 @@ public class PlayerMovment : MonoBehaviour
             
 
         }*/
-        if(grounded && !flyFlag && !glideFlag)
+        if (grounded && !flyFlag && !glideFlag)
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
