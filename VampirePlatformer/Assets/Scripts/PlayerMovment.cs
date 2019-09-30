@@ -52,7 +52,7 @@ public class PlayerMovment : MonoBehaviour
     public float pushX = 0;
     public float pushDecay = 10f;
     public float pushIntensity = 10f;
-
+    public float batPushFactor = 0.5f;
     // public float testCol=0.2f,currCol;
 
     public bool getFlyFlag() {
@@ -271,7 +271,7 @@ public class PlayerMovment : MonoBehaviour
 
 
             moveVector = (vLeft + vRight + vUp + vDown).normalized * batSpeed * Time.deltaTime;
-            moveVector += (Vector3)push.normalized;
+            moveVector += ((Vector3)push.normalized * batPushFactor);
             rb.MovePosition(transform.position + moveVector);
             moveInput = Input.GetAxis("Horizontal") * speed;
             rb.velocity = new Vector2(moveInput * speed, 0);
