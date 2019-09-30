@@ -263,7 +263,7 @@ public class PlayerMovment : MonoBehaviour
             if (Input.GetAxis("Vertical") < 0)
                 vUp = -Vector2.up;
 
-            if (!Input.GetButton("Jump") || controller.GetComponent<ScoreCounter>().Score <= 0 || grounded)
+            if (!Input.GetButton("Jump") || controller.GetComponent<ScoreCounter>().Score <= 0 /*|| grounded*/)
             {
                 glideFlag = false;
                 flyFlag = false;
