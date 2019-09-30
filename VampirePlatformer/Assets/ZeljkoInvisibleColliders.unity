@@ -12513,7 +12513,7 @@ PrefabInstance:
     - target: {fileID: 1718710392879876031, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
       propertyPath: m_EdgeRadius
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1718710392879876031, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
@@ -12523,7 +12523,7 @@ PrefabInstance:
     - target: {fileID: 1718710392879876031, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1718710392879876018, guid: 43b9b57972268ea40bf2105e5c559046,
         type: 3}
@@ -32346,7 +32346,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542406781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
