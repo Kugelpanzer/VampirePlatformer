@@ -1520,17 +1520,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score:
-  - {fileID: 401688678}
-  - {fileID: 298057465}
-  - {fileID: 1233919741}
-  - {fileID: 1809270668}
-  - {fileID: 441549708}
-  Name:
   - {fileID: 23753477}
   - {fileID: 1346330954}
   - {fileID: 1393911455}
   - {fileID: 1217117917}
   - {fileID: 1982398842}
+  Name:
+  - {fileID: 401688678}
+  - {fileID: 298057465}
+  - {fileID: 1233919741}
+  - {fileID: 1809270668}
+  - {fileID: 441549708}
 --- !u!1 &1199450012
 GameObject:
   m_ObjectHideFlags: 0

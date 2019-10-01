@@ -419,6 +419,12 @@ public class PlayerMovment : MonoBehaviour
         
         controller.GetComponent<LevelController>().ResetLevel();
     }
+    private void VictoryTrigger()
+    {
+        PlayerPrefs.SetInt("CurrentScore", (int) controller.GetComponent<ScoreCounter>().Score);
+        controller.GetComponent<LevelController>().GoToScene(3);
+
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Death")
@@ -433,7 +439,7 @@ public class PlayerMovment : MonoBehaviour
         {
             if (Input.GetAxis("Vertical") > 0)
             {
-                controller.GetComponent<LevelController>().GoToScene(3);
+                VictoryTrigger();
             }
         }
     }
