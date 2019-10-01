@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ScoreList : MonoBehaviour
 {
 
-    List<string> Names = new List<string>();
-    List<int> Scores = new List<int>();
+    public List<string> Names = new List<string>();
+
+    public List<int> Scores = new List<int>();
     // Start is called before the first frame update
     void Start()
     {

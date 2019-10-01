@@ -425,12 +425,18 @@ public class PlayerMovment : MonoBehaviour
         {
             DeathTrigger();
         }
+
+    }
+    private void OnTriggerStay2D(Collider2D col)
+    {
         if (col.gameObject.tag == "Victory")
         {
-
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                controller.GetComponent<LevelController>().GoToScene(3);
+            }
         }
     }
-
-//mala promena 
+    //mala promena 
 
 }

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ZeljkoInvisibleColliders.unity
     guid: 5321b67e8be105e468ecfa45338e2594
+  - enabled: 1
+    path: Assets/Scenes/You win screen.unity
+    guid: 3de3a5a866a6df24999b3a1a198ddb3a
   m_configObjects: {}
