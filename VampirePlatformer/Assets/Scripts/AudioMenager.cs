@@ -11,6 +11,8 @@ public class AudioMenager : MonoBehaviour
     public Slider sl;
     public Sound[] sounds;
     private int rand;
+    public static AudioMenager instance;
+
     // Start is called before the first frame update
     void SetAllVolume()
     {
@@ -30,12 +32,14 @@ public class AudioMenager : MonoBehaviour
     }
     private void Awake()
     {
-
+        if(instance!= null)
+        DontDestroyOnLoad(gameObject);
         SetAllVolume();
 
     }
     void Start()
     {
+
         rand = Random.Range(200, 600);
         foreach(Sound s in sounds)
         {
