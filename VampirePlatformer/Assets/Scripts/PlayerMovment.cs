@@ -401,7 +401,10 @@ public class PlayerMovment : MonoBehaviour
         SetBat();
     }
 
-
+    public void SetDeath()
+    {
+        anim.SetInteger("State", 6);
+    }
     #endregion
     /* void OnCollisionEnter2D(Collision2D col)
      {
@@ -420,6 +423,10 @@ public class PlayerMovment : MonoBehaviour
     private void DeathTrigger()
     {
         audioObj.PlaySound("Death");
+        SetDeath();
+    }
+    public void DeathAnim()
+    {
         controller.GetComponent<LevelController>().ResetLevel();
     }
     private void VictoryTrigger()
@@ -429,6 +436,7 @@ public class PlayerMovment : MonoBehaviour
         controller.GetComponent<LevelController>().GoToScene(3);
 
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Death")
