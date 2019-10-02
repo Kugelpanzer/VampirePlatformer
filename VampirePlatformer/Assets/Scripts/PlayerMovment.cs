@@ -436,7 +436,8 @@ public class PlayerMovment : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Victory")
-        {
+        { 
+            Debug.Log("radi ");
             if (Input.GetAxis("Vertical") > 0)
             {
                 VictoryTrigger();
