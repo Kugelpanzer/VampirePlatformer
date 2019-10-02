@@ -34,6 +34,7 @@ public class ScoreList : MonoBehaviour
             {
                 Scores.Insert(i, score);
                 Names.Insert(i, name);
+                break;
             }
         }
         for (int i = 0; i < 5; i++)
