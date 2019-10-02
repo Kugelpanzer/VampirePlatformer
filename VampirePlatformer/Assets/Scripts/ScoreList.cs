@@ -6,16 +6,23 @@ using UnityEngine.UI;
 public class ScoreList : MonoBehaviour
 {
 
-    public List<string> Names = new List<string>();
+    List<string> Names = new List<string>();
 
-    public List<int> Scores = new List<int>();
+    List<int> Scores = new List<int>();
+    public Text currScore;
     // Start is called before the first frame update
     void Start()
     {
-        
+        currScore.text = PlayerPrefs.GetInt("CurrentScore", 0).ToString();
     }
-    public void AddScore(string name,int score)
+    public void AddScore(InputField nameTxt)
     {
+        string name;
+        if (nameTxt.text != "")
+            name = nameTxt.text;
+        else
+            name = "Player";
+        int score = PlayerPrefs.GetInt("CurrentScore", 0);
         for (int i = 0; i < 5; i++)
         {
             Scores.Add( PlayerPrefs.GetInt("Score" + i.ToString(),0) );
