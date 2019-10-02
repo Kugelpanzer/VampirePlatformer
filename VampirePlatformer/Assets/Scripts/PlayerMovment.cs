@@ -443,12 +443,23 @@ public class PlayerMovment : MonoBehaviour
         {
             DeathTrigger();
         }
+        if (col.gameObject.tag == "Victory")
+        {
+            col.gameObject.GetComponent<ButtonScript>().On();
+        }
 
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Victory")
+        {
+            col.gameObject.GetComponent<ButtonScript>().Off();
+        }
     }
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Victory")
-        { 
+        {
             Debug.Log("radi ");
             if (Input.GetAxis("Vertical") > 0)
             {
