@@ -12,29 +12,29 @@ public class AudioMenager : MonoBehaviour
     public Sound[] sounds;
     private int rand;
     public static AudioMenager instance;
+    bool mainFlag = true;
 
     // Start is called before the first frame update
-    void SetAllVolume()
+    public void SetAllVolume()
     {
-        foreach (Sound s in sounds)
-        {
-            s.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
-        }
-    }
-    public void SetVolume()
-    {
-        PlayerPrefs.SetFloat("SoundVolume", sl.value);
         foreach (Sound s in sounds)
         {
             s.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
             s.source.volume = s.volume;
         }
     }
+
     private void Awake()
     {
-        if(instance!= null)
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         DontDestroyOnLoad(gameObject);
-        SetAllVolume();
+
 
     }
     void Start()
@@ -49,11 +49,13 @@ public class AudioMenager : MonoBehaviour
             s.source.pitch = 1f;
             s.source.loop = s.loop;
         }
-        PlaySound("Main");
-         if (sl != null)
-         {
-             sl.value = PlayerPrefs.GetFloat("SoundVolume", 1f);
-         }
+        SetAllVolume();
+        if (mainFlag)
+        {
+            PlaySound("Main");
+            mainFlag = false;
+        }
+
     }
 
 

@@ -55,6 +55,8 @@ public class PlayerMovment : MonoBehaviour
     public float batPushFactor = 0.5f;
     // public float testCol=0.2f,currCol;
 
+    AudioMenager audioObj;
+    
     public bool getFlyFlag() {
         return flyFlag;
     }
@@ -82,6 +84,7 @@ public class PlayerMovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioObj = GameObject.Find("SoundController").GetComponent<AudioMenager>();
         controller = GameObject.Find("Controller");
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -416,11 +419,12 @@ public class PlayerMovment : MonoBehaviour
 
     private void DeathTrigger()
     {
-        
+        audioObj.PlaySound("Death");
         controller.GetComponent<LevelController>().ResetLevel();
     }
     private void VictoryTrigger()
     {
+        audioObj.PlaySound("Win");
         PlayerPrefs.SetInt("CurrentScore", (int) controller.GetComponent<ScoreCounter>().Score);
         controller.GetComponent<LevelController>().GoToScene(3);
 

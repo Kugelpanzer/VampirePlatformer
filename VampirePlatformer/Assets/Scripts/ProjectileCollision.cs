@@ -5,10 +5,12 @@ using UnityEngine;
 public class ProjectileCollision : MonoBehaviour
 {
     public float speedX;
+    AudioMenager audioObj;
     // Start is called before the first frame update
     void Start()
     {
-        speedX = GetComponent<Rigidbody2D>().velocity.x;
+            audioObj = GameObject.Find("SoundController").GetComponent<AudioMenager>();
+            speedX = GetComponent<Rigidbody2D>().velocity.x;
     }
 
     // Update is called once per frame
@@ -23,7 +25,8 @@ public class ProjectileCollision : MonoBehaviour
         Rigidbody2D projectyleRB = GetComponent<Rigidbody2D>();
         
         if (col.gameObject.tag == "Player")
-        { 
+        {
+            audioObj.PlaySound("Hit");
             GameObject player = col.gameObject;
             PlayerMovment PlayerObject = player.GetComponent<PlayerMovment>();
             if (speedX > 0)
