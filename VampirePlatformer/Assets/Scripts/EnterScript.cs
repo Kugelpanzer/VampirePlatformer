@@ -14,6 +14,6 @@ public class EnterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
