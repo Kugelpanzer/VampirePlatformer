@@ -427,7 +427,7 @@ public class PlayerMovment : MonoBehaviour
     }
     public void DeathAnim()
     {
-        controller.GetComponent<LevelController>().ResetLevel();
+        controller.GetComponent<LevelController>().GoToScene(6);
     }
     private void VictoryTrigger()
     {

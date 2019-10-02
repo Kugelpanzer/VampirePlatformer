@@ -9,13 +9,15 @@ public class ScoreList : MonoBehaviour
     List<string> Names = new List<string>();
 
     List<int> Scores = new List<int>();
+    public InputField nameTxt;
     public Text currScore;
     // Start is called before the first frame update
     void Start()
     {
         currScore.text = PlayerPrefs.GetInt("CurrentScore", 0).ToString();
+        nameTxt.ActivateInputField();
     }
-    public void AddScore(InputField nameTxt)
+    public void AddScore()
     {
         string name;
         if (nameTxt.text != "")
@@ -46,6 +48,10 @@ public class ScoreList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButton("Submit"))
+        {
+            AddScore();
+            GetComponent<LevelController>().GoToScene(4);
+        }
     }
 }

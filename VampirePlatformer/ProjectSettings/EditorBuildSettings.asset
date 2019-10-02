@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scores.unity
     guid: b4b8386aa8ab1d749bf11286bcbf522a
+  - enabled: 1
+    path: Assets/Scenes/Credit scene.unity
+    guid: c1e8af711427c6f459b81ef416a05d32
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: f863d47658f99614a9b907f50c5fee45
   m_configObjects: {}
