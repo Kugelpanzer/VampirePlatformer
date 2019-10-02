@@ -204,6 +204,18 @@ public class PlayerMovment : MonoBehaviour
                 {
                     rb.velocity = push;
                 }
+                //test
+                if(glideFlag)
+                if (currGlideTime <= 0)
+                {
+                    glideFlag = false;
+                    currGlideTime = glideTime;
+                }
+                else
+                {
+                    currGlideTime -= Time.deltaTime;
+                }
+                //test
             }
             else if (!grounded && rb.velocity.y >= -0.1 && rb.velocity.y <= 0.1 && currJumpReload > 0 && !glideFlag && wasGrounded)
             {
@@ -397,7 +409,6 @@ public class PlayerMovment : MonoBehaviour
     }
     public void EndJump()
     {
-        Debug.Log("skok");
         SetBat();
     }
 
@@ -460,7 +471,7 @@ public class PlayerMovment : MonoBehaviour
     {
         if (col.gameObject.tag == "Victory")
         {
-            Debug.Log("radi ");
+ 
             if (Input.GetAxis("Vertical") > 0)
             {
                 VictoryTrigger();
