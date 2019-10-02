@@ -19,8 +19,8 @@ public class AudioMenager : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {
-            s.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
-            s.source.volume = s.volume;
+           // s.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
+            s.source.volume = PlayerPrefs.GetFloat("SoundVolume", 1f)*s.volume;
         }
     }
 
@@ -45,7 +45,7 @@ public class AudioMenager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            s.source.volume = PlayerPrefs.GetFloat("SoundVolume", 1f) * s.volume;
             s.source.pitch = 1f;
             s.source.loop = s.loop;
         }
