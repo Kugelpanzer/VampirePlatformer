@@ -416,6 +416,7 @@ public class PlayerMovment : MonoBehaviour
     {
         anim.SetInteger("State", 6);
     }
+    //neka promena
     #endregion
     /* void OnCollisionEnter2D(Collision2D col)
      {
